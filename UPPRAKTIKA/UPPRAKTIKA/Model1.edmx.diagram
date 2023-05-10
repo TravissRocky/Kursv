@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cff97bdafcd7444a937120782ea397ee" Name="Diagram1">
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Log" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Договор" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Должность" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Доход" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Клиенты" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.КодовоеСлово" Width="1.5" PointX="4.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Сотрудник" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dohod_Kl_Ist202_VavilonskyModel.Счёт" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Dohod_Kl_Ist202_VavilonskyModel.FK_Договор_Клиенты" ManuallyRouted="false" />
+        <AssociationConnector Association="Dohod_Kl_Ist202_VavilonskyModel.FK_Сотрудник_Договор" ManuallyRouted="false" />
+        <AssociationConnector Association="Dohod_Kl_Ist202_VavilonskyModel.FK_Счёт_Договор" ManuallyRouted="false" />
+        <AssociationConnector Association="Dohod_Kl_Ist202_VavilonskyModel.FK_Сотрудник_Должность" ManuallyRouted="false" />
+        <AssociationConnector Association="Dohod_Kl_Ist202_VavilonskyModel.FK_Доход_Сотрудник" ManuallyRouted="false" />
+        <AssociationConnector Association="Dohod_Kl_Ist202_VavilonskyModel.FK_Счёт_Сотрудник" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

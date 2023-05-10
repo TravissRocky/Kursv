@@ -1,0 +1,50 @@
+﻿<Page x:Class="UPPRAKTIKA.PageRegistration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UPPRAKTIKA"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="800"
+      Title="PageRegistration">
+
+    <StackPanel>
+        <StackPanel.Background >
+            <LinearGradientBrush>
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.00" Color="#FF87A0DE"/>
+                    <GradientStop Offset="0.50" Color="Azure"/>
+                    <GradientStop Offset="1.00" Color="#FF009CFF"/>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </StackPanel.Background>
+
+        <Grid Height="900">
+            <Label Content="Персональная информация" HorizontalAlignment="Left" Height="38" Margin="29,23,0,0" VerticalAlignment="Top" Width="294" FontSize="20" FontWeight="Bold"/>
+            <Label Content="Фамилия" HorizontalAlignment="Left" Height="39" Margin="29,80,0,0" VerticalAlignment="Top" Width="175" FontSize="14" FontWeight="Bold"/>
+            <TextBox Text="{Binding Фамилия}"  HorizontalAlignment="Left" Height="30" Margin="29,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <Label Content="Имя" HorizontalAlignment="Left" Height="39" Margin="311,80,0,0" VerticalAlignment="Top" Width="175" FontSize="14" FontWeight="Bold"/>
+            <TextBox Text="{Binding Имя}" HorizontalAlignment="Left" Height="30" Margin="298,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <Label Content="E-mail(логин)" HorizontalAlignment="Left" Height="39" Margin="29,168,0,0" VerticalAlignment="Top" Width="175" FontSize="14" FontWeight="Bold"/>
+            <TextBox Text="{Binding login}" HorizontalAlignment="Left" Height="30" Margin="29,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <Label Content="Пароль" HorizontalAlignment="Left" Height="39" Margin="311,168,0,0" VerticalAlignment="Top" Width="175" FontSize="14" FontWeight="Bold"/>
+            <TextBox Text="{Binding password}"  HorizontalAlignment="Left" Height="30" Margin="298,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <Label Content="Повторить пароль" HorizontalAlignment="Left" Height="39" Margin="298,254,0,0" VerticalAlignment="Top" Width="175" FontSize="14" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="30" Margin="298,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <Label Content="Кодовое слово" HorizontalAlignment="Left" Height="39" Margin="29,289,0,0" VerticalAlignment="Top" Width="175" FontSize="18" FontWeight="Bold"/>
+            <Label Content="Кодовое слово (одно слово)" HorizontalAlignment="Left" Height="39" Margin="29,333,0,0" VerticalAlignment="Top" Width="207" FontSize="14" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="30" Margin="29,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <Label Content="Секретный вопрос для восстановления пароля" HorizontalAlignment="Left" Height="39" Margin="29,432,0,0" VerticalAlignment="Top" Width="435" FontSize="18" FontWeight="Bold"/>
+            <Label Content="Секретный вопрос" HorizontalAlignment="Left" Height="39" Margin="29,476,0,0" VerticalAlignment="Top" Width="207" FontSize="14" FontWeight="Bold"/>
+            <ComboBox Name="noname" HorizontalAlignment="Left" Height="32" Margin="29,520,0,0" VerticalAlignment="Top" Width="309"  DisplayMemberPath="СекретныйВопрос"/>
+            <Label Content="Ответ на вопрос" HorizontalAlignment="Left" Height="39" Margin="29,569,0,0" VerticalAlignment="Top" Width="207" FontSize="14" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="30" Margin="29,613,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+            <CheckBox Content="Согласен с условиями" HorizontalAlignment="Left" Height="25" Margin="29,661,0,0" VerticalAlignment="Top" Width="163"/>
+            <Button Content="Далее" HorizontalAlignment="Left" Height="45" Margin="29,691,0,0" VerticalAlignment="Top" Width="332" Click="Button_Click"/>
+            <TextBlock HorizontalAlignment="Left" Height="30" Margin="547,254,0,0" TextWrapping="Wrap" Text="Минимальная длина пароля 6 символов" VerticalAlignment="Top" Width="235"/>
+        </Grid>
+
+
+    </StackPanel>
+
+</Page>

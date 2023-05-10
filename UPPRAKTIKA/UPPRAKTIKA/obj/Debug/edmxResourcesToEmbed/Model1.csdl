@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dohod_Kl_Ist202_VavilonskyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="КодПользователя" />
+    </Key>
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="КодПользователя" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin" Type="Boolean" />
+    <Property Name="ОтветНаВопрос" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Договор">
+    <Key>
+      <PropertyRef Name="НомерДоговора" />
+    </Key>
+    <Property Name="НомерДоговора" Type="Int32" Nullable="false" />
+    <Property Name="КодКлиента" Type="Int32" />
+    <Property Name="МестоРаботы" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Зарплата" Type="Decimal" Precision="10" Scale="4" />
+    <Property Name="НомерСчёта" Type="Int32" />
+    <NavigationProperty Name="Клиенты" Relationship="Self.FK_Договор_Клиенты" FromRole="Договор" ToRole="Клиенты" />
+    <NavigationProperty Name="Сотрудник" Relationship="Self.FK_Сотрудник_Договор" FromRole="Договор" ToRole="Сотрудник" />
+    <NavigationProperty Name="Счёт" Relationship="Self.FK_Счёт_Договор" FromRole="Договор" ToRole="Счёт" />
+  </EntityType>
+  <EntityType Name="Должность">
+    <Key>
+      <PropertyRef Name="КодДолжности" />
+    </Key>
+    <Property Name="КодДолжности" Type="Int32" Nullable="false" />
+    <Property Name="Должность1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Сотрудник" Relationship="Self.FK_Сотрудник_Должность" FromRole="Должность" ToRole="Сотрудник" />
+  </EntityType>
+  <EntityType Name="Доход">
+    <Key>
+      <PropertyRef Name="КодДохода" />
+    </Key>
+    <Property Name="КодДохода" Type="Int32" Nullable="false" />
+    <Property Name="КодСотрудника" Type="Int32" />
+    <Property Name="ВидДохода" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="СуммаДохода" Type="Decimal" Precision="10" Scale="4" />
+    <NavigationProperty Name="Сотрудник" Relationship="Self.FK_Доход_Сотрудник" FromRole="Доход" ToRole="Сотрудник" />
+  </EntityType>
+  <EntityType Name="Клиенты">
+    <Key>
+      <PropertyRef Name="КодКлиента" />
+    </Key>
+    <Property Name="КодКлиента" Type="Int32" Nullable="false" />
+    <Property Name="НомерДоговора" Type="Int32" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Договор" Relationship="Self.FK_Договор_Клиенты" FromRole="Клиенты" ToRole="Договор" />
+  </EntityType>
+  <EntityType Name="КодовоеСлово">
+    <Key>
+      <PropertyRef Name="КодСекретногоВопроса" />
+    </Key>
+    <Property Name="КодСекретногоВопроса" Type="Int32" Nullable="false" />
+    <Property Name="СекретныйВопрос" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Сотрудник">
+    <Key>
+      <PropertyRef Name="КодСотрудника" />
+    </Key>
+    <Property Name="КодСотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="НомерДоговора" Type="Int32" />
+    <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ДатаРождения" Type="DateTime" Precision="0" />
+    <Property Name="НомерСчёта" Type="Int32" />
+    <Property Name="КодДолжности" Type="Int32" />
+    <Property Name="ЭлектроннаяПочта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Договор" Relationship="Self.FK_Сотрудник_Договор" FromRole="Сотрудник" ToRole="Договор" />
+    <NavigationProperty Name="Должность" Relationship="Self.FK_Сотрудник_Должность" FromRole="Сотрудник" ToRole="Должность" />
+    <NavigationProperty Name="Доход" Relationship="Self.FK_Доход_Сотрудник" FromRole="Сотрудник" ToRole="Доход" />
+    <NavigationProperty Name="Счёт" Relationship="Self.FK_Счёт_Сотрудник" FromRole="Сотрудник" ToRole="Счёт" />
+  </EntityType>
+  <EntityType Name="Счёт">
+    <Key>
+      <PropertyRef Name="НомерСчёта" />
+    </Key>
+    <Property Name="НомерСчёта" Type="Int32" Nullable="false" />
+    <Property Name="Валюта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="КодСотрудника" Type="Int32" />
+    <Property Name="СуммаСчёта" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="НомерДоговора" Type="Int32" />
+    <NavigationProperty Name="Договор" Relationship="Self.FK_Счёт_Договор" FromRole="Счёт" ToRole="Договор" />
+    <NavigationProperty Name="Сотрудник" Relationship="Self.FK_Счёт_Сотрудник" FromRole="Счёт" ToRole="Сотрудник" />
+  </EntityType>
+  <Association Name="FK_Договор_Клиенты">
+    <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+    <End Role="Договор" Type="Self.Договор" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Клиенты">
+        <PropertyRef Name="КодКлиента" />
+      </Principal>
+      <Dependent Role="Договор">
+        <PropertyRef Name="КодКлиента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудник_Договор">
+    <End Role="Договор" Type="Self.Договор" Multiplicity="0..1" />
+    <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Договор">
+        <PropertyRef Name="НомерДоговора" />
+      </Principal>
+      <Dependent Role="Сотрудник">
+        <PropertyRef Name="НомерДоговора" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счёт_Договор">
+    <End Role="Договор" Type="Self.Договор" Multiplicity="0..1" />
+    <End Role="Счёт" Type="Self.Счёт" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Договор">
+        <PropertyRef Name="НомерДоговора" />
+      </Principal>
+      <Dependent Role="Счёт">
+        <PropertyRef Name="НомерДоговора" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудник_Должность">
+    <End Role="Должность" Type="Self.Должность" Multiplicity="0..1" />
+    <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Должность">
+        <PropertyRef Name="КодДолжности" />
+      </Principal>
+      <Dependent Role="Сотрудник">
+        <PropertyRef Name="КодДолжности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Доход_Сотрудник">
+    <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="0..1" />
+    <End Role="Доход" Type="Self.Доход" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудник">
+        <PropertyRef Name="КодСотрудника" />
+      </Principal>
+      <Dependent Role="Доход">
+        <PropertyRef Name="КодСотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Счёт_Сотрудник">
+    <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="0..1" />
+    <End Role="Счёт" Type="Self.Счёт" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудник">
+        <PropertyRef Name="КодСотрудника" />
+      </Principal>
+      <Dependent Role="Счёт">
+        <PropertyRef Name="КодСотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Dohod_Kl_Ist202_VavilonskyEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Logs" EntityType="Self.Log" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Договор" EntityType="Self.Договор" />
+    <EntitySet Name="Должность" EntityType="Self.Должность" />
+    <EntitySet Name="Доход" EntityType="Self.Доход" />
+    <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+    <EntitySet Name="КодовоеСлово" EntityType="Self.КодовоеСлово" />
+    <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" />
+    <EntitySet Name="Счёт" EntityType="Self.Счёт" />
+    <AssociationSet Name="FK_Договор_Клиенты" Association="Self.FK_Договор_Клиенты">
+      <End Role="Клиенты" EntitySet="Клиенты" />
+      <End Role="Договор" EntitySet="Договор" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудник_Договор" Association="Self.FK_Сотрудник_Договор">
+      <End Role="Договор" EntitySet="Договор" />
+      <End Role="Сотрудник" EntitySet="Сотрудник" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счёт_Договор" Association="Self.FK_Счёт_Договор">
+      <End Role="Договор" EntitySet="Договор" />
+      <End Role="Счёт" EntitySet="Счёт" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудник_Должность" Association="Self.FK_Сотрудник_Должность">
+      <End Role="Должность" EntitySet="Должность" />
+      <End Role="Сотрудник" EntitySet="Сотрудник" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Доход_Сотрудник" Association="Self.FK_Доход_Сотрудник">
+      <End Role="Сотрудник" EntitySet="Сотрудник" />
+      <End Role="Доход" EntitySet="Доход" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Счёт_Сотрудник" Association="Self.FK_Счёт_Сотрудник">
+      <End Role="Сотрудник" EntitySet="Сотрудник" />
+      <End Role="Счёт" EntitySet="Счёт" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Dohod_Kl_Ist202_VavilonskyModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Dohod_Kl_Ist202_VavilonskyModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
